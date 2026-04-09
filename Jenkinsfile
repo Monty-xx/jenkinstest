@@ -19,7 +19,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/Monty-xx/jenkinstest/', branch: 'main'
+                git url: 'https://github.com/Monty-xx/jenkinstest.git', branch: 'main'
             }
         }
 
