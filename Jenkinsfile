@@ -19,7 +19,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/Monty-xx/jenkinstest.git', branch: 'main'
+                git url: 'https://github.com/Monty-xx/jenkinstest.git/', branch: 'main'
             }
         }
 
@@ -82,8 +82,7 @@ pipeline {
             steps {
                 sh '''
                     set -e
-
-                    sudo bash -c "cat > $NGINX_CONF" <<EOF
+                    sudo tee "$NGINX_CONF" > /dev/null <<EOF
 server {
     listen 80;
     server_name _;
@@ -92,7 +91,7 @@ server {
     index index.html;
 
     location / {
-        try_files \$uri \$uri/ =404;
+        try_files \\$uri \\$uri/ =404;
     }
 }
 EOF
